@@ -7,19 +7,29 @@ import { Provider } from 'react-redux';
 import {applyMiddleware, compose, createStore} from 'redux';
 import RootReducer from './reducers'
 import thunk from "redux-thunk";
+import Index from "./components/Index";
+
+const customMiddleware = store => next => action => {
+    console.log(action);
+    next(action);
+};
 
 const store = createStore(
     RootReducer,
     compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ ?
-            window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+        applyMiddleware(thunk, customMiddleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 
+/*ReactDOM.render(
+    <Provider store={store}>
+        <Chat/>
+    </Provider>
+    , document.getElementById('root'));*/
 ReactDOM.render(
     <Provider store={store}>
-    <Chat />
+        <Index/>
     </Provider>
     , document.getElementById('root'));
 

@@ -11,6 +11,9 @@ const mapDispatchToProps = (dispatch) => {
 class MessageBar extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            message: '',
+        }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -19,6 +22,7 @@ class MessageBar extends Component {
         event.preventDefault();
 //       this.props.dispatch(addMessage(this.state.message));
         this.props.sendMessage(this.state.message);
+        this.setState({message: ''});
     }
 
     handleChange(event) {
@@ -28,7 +32,7 @@ class MessageBar extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input type="text" name="messageBar" id="bar" value={this.props.message} onChange={this.handleChange}/>
+                <input type="text" name="messageBar" id="bar" value={this.state.message} onChange={this.handleChange}/>
                 <input type="submit" value="Envoyer"/>
             </form>
         )

@@ -13,7 +13,7 @@ export default class MessageList extends Component {
                     this.props.messages.map((message, key) =>
                     <ul>
                         <li key={key}>
-                        <MessageItem key={key} message={message}/>
+                        <MessageItem message={message}/>
                         </li>
                     </ul>
                 )
