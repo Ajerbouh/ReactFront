@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {addMessage} from "../actions";
+import ws from '../service/websocket';
+
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        sendMessage: (message) => dispatch(addMessage(message))
+        sendMessage: (message, username) => dispatch(addMessage(message, username))
     }
 };
 
 class MessageBar extends Component {
+
     constructor(props){
         super(props);
         this.state = {
@@ -16,18 +19,24 @@ class MessageBar extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
 
-    handleSubmit(event) {
-        event.preventDefault();
-//       this.props.dispatch(addMessage(this.state.message));
-        this.props.sendMessage(this.state.message);
-        this.setState({message: ''});
     }
 
     handleChange(event) {
         this.setState({message: event.target.value})
     }
+
+    handleSubmit(event) {
+        event.preventDefault();
+//       this.props.dispatch(addMessage(this.state.message));
+        let wsMessage = this.state.message;
+        let wsUsername = this.props.username.username;
+
+        ws.send(JSON.stringify(this.props.sendMessage(wsMessage, wsUsername)));
+        this.setState({message: ''});
+    }
+
+
 
     render() {
         return (

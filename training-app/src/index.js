@@ -8,13 +8,14 @@ import {applyMiddleware, compose, createStore} from 'redux';
 import RootReducer from './reducers'
 import thunk from "redux-thunk";
 import Index from "./components/Index";
+import ws from "./service/websocket";
 
 const customMiddleware = store => next => action => {
     console.log(action);
-    next(action);
+    return next(action);
 };
 
-const store = createStore(
+export const store = createStore(
     RootReducer,
     compose(
         applyMiddleware(thunk, customMiddleware),

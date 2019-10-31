@@ -1,8 +1,9 @@
 import * as CONST from '../constants/ActionTypes'
 
-export const addMessage = message => ({
+export const addMessage = (message, username) => ({
     type: CONST.ADD_MESSAGE,
-    message
+    message,
+    username,
 });
 
 function fetchMessagePending() {

@@ -1,16 +1,6 @@
 import React, {Component} from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-    useHistory,
-    useLocation
-} from "react-router-dom";
 import {connect} from 'react-redux'
 import {login} from "../actions";
-import Chat from "./Chat";
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -19,6 +9,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Login extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +22,10 @@ class Login extends Component {
     loginConnect(event) {
         event.preventDefault();
         this.props.login(this.state.username);
-        this.setState({username: ''})
+        this.setState({username: ''});
+        if (this.state.username !== null) {
+            this.props.history.push("/chat");
+        }
     }
 
     handleChange(event) {

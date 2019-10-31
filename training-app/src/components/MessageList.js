@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import MessageItem from './MessageItem';
 
 export default class MessageList extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         if (this.props.messages.length < 1){
@@ -13,7 +16,9 @@ export default class MessageList extends Component {
                     this.props.messages.map((message, key) =>
                     <ul>
                         <li key={key}>
-                        <MessageItem message={message}/>
+                        <MessageItem
+                            message={message}
+                        />
                         </li>
                     </ul>
                 )
