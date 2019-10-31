@@ -28,10 +28,8 @@ class MessageBar extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-//       this.props.dispatch(addMessage(this.state.message));
         let wsMessage = this.state.message;
         let wsUsername = this.props.username.username;
-
         ws.send(JSON.stringify(this.props.sendMessage(wsMessage, wsUsername)));
         this.setState({message: ''});
     }

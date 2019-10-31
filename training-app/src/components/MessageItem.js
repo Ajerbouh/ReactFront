@@ -1,16 +1,17 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import {Twemoji} from 'react-emoji-render';
+import {Toast} from "react-bootstrap"
 
 export default function MessageItem({message}) {
     return (
-        <ul>
-            <p>
-                <Twemoji text={(message.username || '').toString()}/>
-            </p>
-            <p>
+        <Toast>
+            <Toast.Header>
+                <strong className="mr-auto"><Twemoji text={(message.username || '').toString()}/></strong>
+            </Toast.Header>
+            <Toast.Body>
                 <Twemoji text={(message.message || '').toString()}/>
-            </p>
-        </ul>
+            </Toast.Body>
+        </Toast>
+
     )
 }

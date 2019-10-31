@@ -7,21 +7,20 @@ export default class MessageList extends Component {
     }
 
     render() {
-        if (this.props.messages.length < 1){
+        if (this.props.messages.length < 1) {
             return <p>Pas de messages !</p>
         }
         return (
             <div>
                 {
+
                     this.props.messages.map((message, key) =>
-                    <ul>
-                        <li key={key}>
                         <MessageItem
                             message={message}
+                            username={this.props.username}
+                            key={key}
                         />
-                        </li>
-                    </ul>
-                )
+                    )
                 }
             </div>
         )

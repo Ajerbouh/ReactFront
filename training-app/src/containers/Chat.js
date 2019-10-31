@@ -13,7 +13,12 @@ const mapStateToProps = (state) => {
     }
 };
 
-
+const styles = {
+    center: {
+        marginLeft: "auto",
+        marginRight: "auto"
+    }
+}
 
 class ChatContainer extends Component{
 
@@ -24,10 +29,12 @@ class ChatContainer extends Component{
     }
     render() {
         return (
+            <div className={styles.center}>
             <Chat
             message={this.props.message}
             username={this.props.username}
         />
+            </div>
         )
     }
 }
